@@ -6,7 +6,8 @@ public class PlayerControl : MonoBehaviour
     Vector2 moveInput;
     [SerializeField] float target_speed = 5;
     [SerializeField] float acceleration = 25f;
-    Rigidbody2D rigidbody;
+    new Rigidbody2D rigidbody;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,9 +26,7 @@ public class PlayerControl : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        print("moving");
         // moveInput = context.ReadValue<float>();
         moveInput = context.ReadValue<Vector2>();
-        print(moveInput);
     }
 }

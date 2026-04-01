@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public List<Card> ai_hand = new List<Card>();
     public List<Card> discard_pile = new List<Card>();
 
+    public PlayerControl Player = null;
     private void Awake()
     {
         if (gm != null && gm != this)
@@ -34,7 +35,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Player == null)
+        {
+            Player = FindAnyObjectByType<PlayerControl>();
+            print(Player);
+        }
     }
 
     void Deal()
@@ -56,6 +61,7 @@ public class GameManager : MonoBehaviour
     public void OnStartPressed()
     {
         SceneManager.LoadScene("Game");
+        
     }
     
 }
