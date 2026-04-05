@@ -1,15 +1,22 @@
+using UnityEditor.U2D;
 using UnityEngine;
 
 public class Goblin : MonoBehaviour
 {
     GameManager GM;
-    float speed = 100;
+    float speed = 5f;
+    public float speedMultiplier = 1;
+    SpriteRenderer sprite;
+    [SerializeField] Sprite normSprite;
+    [SerializeField] Sprite punchSprite;
+    [SerializeField] Sprite throwSprite;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        sprite = GetComponent<SpriteRenderer>();
+        sprite.sprite = normSprite;
         GM = FindAnyObjectByType<GameManager>();
-        print(GM);
     }
 
     // Update is called once per frame
@@ -17,8 +24,14 @@ public class Goblin : MonoBehaviour
     {
         if (GM.Player != null)
         {
-            print("MOVING");
-            Vector2.MoveTowards(transform.position,GM.Player.transform.position,speed*Time.deltaTime);
+            if (Vector2.Distance(transform.position,GM.Player.transform.position) > 2)
+            {
+                transform.position = Vector2.MoveTowards(transform.position,GM.Player.transform.position,speedMultiplier*speed*Time.deltaTime);
+            }
+            else
+            {
+                
+            }
         }
     }
 }

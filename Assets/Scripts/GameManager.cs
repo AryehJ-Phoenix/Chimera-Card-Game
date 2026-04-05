@@ -64,4 +64,8 @@ public class GameManager : MonoBehaviour
         
     }
     
+    public float RNG(float min,float max)
+    {
+        return UnityEngine.Random.Range(min,max);
+    }
 }
