@@ -4,12 +4,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour
 {
+    public Slots s1;
+    public Slots s2;
+    public Slots s3;
     Vector2 moveInput;
     Vector2 boundaries = new Vector2(34,15);
     [SerializeField] float target_speed = 5;
     [SerializeField] float acceleration = 25f;
     new Rigidbody2D rigidbody;
-    float last_direction; //DO THIS FOR SPRITE FLIPPING
+    float last_directionX = 1; //DO THIS FOR SPRITE FLIPPING
+    float last_directionY = 1;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,31 +35,14 @@ public class PlayerControl : MonoBehaviour
         if(transform.position.y > boundaries.y) {rigidbody.linearVelocityY = -20;}
         if(transform.position.y < -boundaries.y) {rigidbody.linearVelocityY = 20;}
 
-        if(Mathf.Abs(rigidbody.linearVelocityX) < 10 && Mathf.Abs(rigidbody.linearVelocityY) < 10)
-        {
-            GetComponent<Animator>().speed = 0.5f;
-        }
-        else
-        {
-            GetComponent<Animator>().speed = 1;
-        }
+        if(Mathf.Abs(rigidbody.linearVelocityX) < 10 && Mathf.Abs(rigidbody.linearVelocityY) < 10) {GetComponent<Animator>().speed = 0.5f;}
+        else {GetComponent<Animator>().speed = 1;}
 
-        if(rigidbody.linearVelocityX >= 0)
-        {
-            GetComponent<SpriteRenderer>().flipX = false;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().flipX = true;
-        }
-        // if(vX < 1 && vY < 1)
-        // {
-        //     GetComponent<Animator>().speed = 0.05f;
-        // }
-        // else
-        // {
-        //     GetComponent<Animator>().speed = 0.1f;
-        // }
+        if(last_directionX == 1) {GetComponent<SpriteRenderer>().flipX = false;}
+        else {GetComponent<SpriteRenderer>().flipX = true;}
+
+        if (rigidbody.linearVelocityX > 0) {last_directionX = 1;}
+        if (rigidbody.linearVelocityX < 0) {last_directionX = -1;}
     }
 
     public void OnMove(InputAction.CallbackContext context)

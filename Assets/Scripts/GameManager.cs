@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     public List<Card> discard_pile = new List<Card>();
 
     public PlayerControl Player = null;
+    public Slots slot_1 = null;
+    public Slots slot_2 = null;
+    public Slots slot_3 = null;
+    Slots obj;
     private void Awake()
     {
         if (gm != null && gm != this)
@@ -40,6 +44,9 @@ public class GameManager : MonoBehaviour
             Player = FindAnyObjectByType<PlayerControl>();
             print(Player);
         }
+        if(Player.s1 != null){slot_1=Player.s1;}
+        if(Player.s2 != null){slot_2=Player.s2;}
+        if(Player.s3 != null){slot_3=Player.s3;}
     }
 
     void Deal()

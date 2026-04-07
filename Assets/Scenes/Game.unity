@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f890aa345a7b94f15b2e657e20896c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slots
+  num: 3
 --- !u!61 &141190258
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -375,6 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f890aa345a7b94f15b2e657e20896c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slots
+  num: 1
 --- !u!61 &213534880
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -618,6 +620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f890aa345a7b94f15b2e657e20896c1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slots
+  num: 2
 --- !u!61 &999351270
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -700,6 +703,9 @@ MonoBehaviour:
   ai_hand: []
   discard_pile: []
   Player: {fileID: 0}
+  slot_1: {fileID: 0}
+  slot_2: {fileID: 0}
+  slot_3: {fileID: 0}
 --- !u!4 &1017834355
 Transform:
   m_ObjectHideFlags: 0
@@ -750,6 +756,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4b4ab71fb8d4da7bce1eac1292a727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
+  s1: {fileID: 213534879}
+  s2: {fileID: 999351269}
+  s3: {fileID: 141190257}
   target_speed: 25
   acceleration: 75
 --- !u!114 &1156549874
