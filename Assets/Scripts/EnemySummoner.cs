@@ -33,15 +33,15 @@ public class EnemySummoner : MonoBehaviour
 
     void Spawn()
     {
-        int enemy = (int)Math.Round(GM.RNG(0,1) * (Enemies.Count - 1)); 
+        int enemy = (int)(GM.RNG(0,Enemies.Count - 1));
 
-        float xPos;
-            if (GM.RNG(0,1) <= 0.5) {xPos = -1;} else {xPos = 1;};
-        float yPos;
-            if (GM.RNG(0,1) <= 0.5) {yPos = -1;} else {yPos = 1;};
+        float xPosNeg;
+            if (GM.RNG(0,1) <= 0.5) {xPosNeg = -1;} else {xPosNeg = 1;};
+        float yPosNeg;
+            if (GM.RNG(0,1) <= 0.5) {yPosNeg = -1;} else {yPosNeg = 1;};
 
-        float xShift = GM.RNG(10,20) * xPos;    //(int)Math.Round((int)Math.Round(GM.RNG(0,1)) - 0.5f);
-        float yShift = GM.RNG(10,20) * yPos;    //(int)Math.Round((int)Math.Round(GM.RNG(0,1)) - 0.5f);
+        float xShift = GM.RNG(10,20) * xPosNeg;    //(int)Math.Round((int)Math.Round(GM.RNG(0,1)) - 0.5f);
+        float yShift = GM.RNG(10,20) * yPosNeg;    //(int)Math.Round((int)Math.Round(GM.RNG(0,1)) - 0.5f);
         //print("xShift = " + xShift);
         //print("yShift = " + yShift);
         

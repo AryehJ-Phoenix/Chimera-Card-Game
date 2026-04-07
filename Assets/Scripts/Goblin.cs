@@ -24,7 +24,7 @@ public class Goblin : MonoBehaviour
     {
         if (GM.Player != null)
         {
-            if (Vector2.Distance(transform.position,GM.Player.transform.position) > 2)
+            if (Vector2.Distance(transform.position,GM.Player.transform.position) > 2.5)
             {
                 transform.position = Vector2.MoveTowards(transform.position,GM.Player.transform.position,speedMultiplier*speed*Time.deltaTime);
             }

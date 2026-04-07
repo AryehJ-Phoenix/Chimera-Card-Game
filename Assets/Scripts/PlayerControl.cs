@@ -1,13 +1,15 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour
 {
     Vector2 moveInput;
-    Vector2 boundaries = new Vector2(31,15);
+    Vector2 boundaries = new Vector2(34,15);
     [SerializeField] float target_speed = 5;
     [SerializeField] float acceleration = 25f;
     new Rigidbody2D rigidbody;
+    float last_direction; //DO THIS FOR SPRITE FLIPPING
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,6 +30,32 @@ public class PlayerControl : MonoBehaviour
         if(transform.position.x < -boundaries.x) {rigidbody.linearVelocityX = 20;}
         if(transform.position.y > boundaries.y) {rigidbody.linearVelocityY = -20;}
         if(transform.position.y < -boundaries.y) {rigidbody.linearVelocityY = 20;}
+
+        if(Mathf.Abs(rigidbody.linearVelocityX) < 10 && Mathf.Abs(rigidbody.linearVelocityY) < 10)
+        {
+            GetComponent<Animator>().speed = 0.5f;
+        }
+        else
+        {
+            GetComponent<Animator>().speed = 1;
+        }
+
+        if(rigidbody.linearVelocityX >= 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        // if(vX < 1 && vY < 1)
+        // {
+        //     GetComponent<Animator>().speed = 0.05f;
+        // }
+        // else
+        // {
+        //     GetComponent<Animator>().speed = 0.1f;
+        // }
     }
 
     public void OnMove(InputAction.CallbackContext context)
