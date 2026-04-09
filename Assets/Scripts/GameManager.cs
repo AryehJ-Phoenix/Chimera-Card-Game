@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public List<Card> discard_pile = new List<Card>();
 
     public PlayerControl Player = null;
+    public EnemySummoner Summoner = null;
     public Slots slot_1 = null;
     public Slots slot_2 = null;
     public Slots slot_3 = null;
@@ -39,14 +40,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player == null)
-        {
-            Player = FindAnyObjectByType<PlayerControl>();
-            print(Player);
-        }
-        if(Player.s1 != null){slot_1=Player.s1;}
-        if(Player.s2 != null){slot_2=Player.s2;}
-        if(Player.s3 != null){slot_3=Player.s3;}
+        if (Player == null) {Player = FindAnyObjectByType<PlayerControl>();}
+        if (Summoner == null) {Summoner = FindAnyObjectByType<EnemySummoner>();}
+
+        if (Summoner.s1 != null) {slot_1 = Summoner.s1;}
+        if (Summoner.s2 != null) {slot_2 = Summoner.s2;}
+        if (Summoner.s3 != null) {slot_3 = Summoner.s3;}
     }
 
     void Deal()

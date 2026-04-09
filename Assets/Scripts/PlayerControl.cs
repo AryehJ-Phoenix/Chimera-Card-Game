@@ -2,18 +2,17 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class PlayerControl : MonoBehaviour
 {
-    public Slots s1;
-    public Slots s2;
-    public Slots s3;
     Vector2 moveInput;
-    Vector2 boundaries = new Vector2(34,15);
+    Vector2 boundaries = new(34,15);
     [SerializeField] float target_speed = 5;
     [SerializeField] float acceleration = 25f;
     new Rigidbody2D rigidbody;
-    float last_directionX = 1; //DO THIS FOR SPRITE FLIPPING
-    float last_directionY = 1;
+    float last_directionX = 1;
+    //float last_directionY = 1;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class EnemySummoner : MonoBehaviour
 {
+    public Slots s1;
+    public Slots s2;
+    public Slots s3;
     public List<GameObject> Enemies;
     float spawnTimer;
     float spawnTime = 5;

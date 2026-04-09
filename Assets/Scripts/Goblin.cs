@@ -1,6 +1,7 @@
 using UnityEditor.U2D;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class Goblin : MonoBehaviour
 {
     GameManager GM;
@@ -32,6 +33,9 @@ public class Goblin : MonoBehaviour
             {
                 
             }
+
+            if (transform.position.x - GM.Player.transform.position.x > 0) {GetComponent<SpriteRenderer>().flipX = true;}
+            if (transform.position.x - GM.Player.transform.position.x < 0) {GetComponent<SpriteRenderer>().flipX = false;}
         }
     }
 }
