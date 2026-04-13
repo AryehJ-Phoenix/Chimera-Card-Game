@@ -48,6 +48,6 @@ public class EnemySummoner : MonoBehaviour
         //print("xShift = " + xShift);
         //print("yShift = " + yShift);
         
-        GameObject newEnemy = Instantiate(Enemies[enemy],GM.Player.transform.position + new Vector3(xShift,yShift,0),Quaternion.identity);
+        GameObject newEnemy = Instantiate(Enemies[enemy],GM.Player.transform.position + new Vector3(xShift,yShift,0),Quaternion.identity,GM.Summoner.transform);
     }
 }

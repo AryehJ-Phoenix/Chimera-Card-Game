@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerControl Player = null;
     public EnemySummoner Summoner = null;
+    public Canvas canvas = null;
     public Slots slot_1 = null;
     public Slots slot_2 = null;
     public Slots slot_3 = null;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     {
         if (Player == null) {Player = FindAnyObjectByType<PlayerControl>();}
         if (Summoner == null) {Summoner = FindAnyObjectByType<EnemySummoner>();}
+        if (canvas == null) {canvas = FindAnyObjectByType<Canvas>();}
 
         if (Summoner.s1 != null) {slot_1 = Summoner.s1;}
         if (Summoner.s2 != null) {slot_2 = Summoner.s2;}
