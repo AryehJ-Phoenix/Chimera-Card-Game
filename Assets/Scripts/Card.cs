@@ -11,15 +11,16 @@ public class Card : MonoBehaviour
     public string card_name;
     public string description;
     public bool disjointed;
-    public int renewSpeed;
+    public int aoeType;
     public int damage;
     public int range;
     public Sprite sprite;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI descriptionText;
-    public TextMeshProUGUI renewSpeedText;
+    public TextMeshProUGUI aoeTypeText;
     public TextMeshProUGUI damageText;
     public TextMeshProUGUI rangeText;
+    public TextMeshProUGUI disjointedText;
     public Image spriteImage;
         
 
@@ -29,14 +30,17 @@ public class Card : MonoBehaviour
         card_name = data.card_name;
         description = data.description;
         disjointed = data.disjointed;
-        renewSpeed = data.renewSpeed;
+        aoeType = data.aoeType;
         damage = data.damage;
         sprite = data.sprite;
         nameText.text = card_name;
         descriptionText.text = description;
-        renewSpeedText.text = renewSpeed.ToString();
         damageText.text = damage.ToString();
+        disjointedText.text = disjointed.ToString();
         spriteImage.sprite = sprite;
+        if (aoeType == 1) {aoeTypeText.text = "P";}
+        else if (aoeType == 2) {aoeTypeText.text = "L";}
+        else if (aoeType == 3) {aoeTypeText.text = "C";}
 
     }
 

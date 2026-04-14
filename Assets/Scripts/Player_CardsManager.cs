@@ -40,6 +40,17 @@ public class Player_CardsManager : MonoBehaviour
                 int newCard = (int)GM.RNG(0,deck.Count-1);
                 hand.Add(deck[newCard]);
                 deck.Remove(deck[newCard]);
+
+                Vector3 pos = new(0,0,0);
+                if(GM.Summoner.s1.open == true) {pos = new(-95,-190,-1); GM.Summoner.s1.open = false;}
+                else if(GM.Summoner.s2.open == true) {pos = new(0,-190,-1); GM.Summoner.s2.open = false;}
+                else if(GM.Summoner.s3.open == true) {pos = new(95,-190,-1); GM.Summoner.s3.open = false;}
+                else print("MAJOR ERROR: ATTEMPTING TO INSTANTIATE CARD WITH ALL SLOTS FULL");
+                print("NEW CARD POSITION: " + pos);
+                
+                Card newHandMember = Instantiate(blank,pos,Quaternion.identity,GM.canvas.transform);
+                newHandMember.data = hand[(int)GM.RNG(0,hand.Count - 1)];
+                newHandMember.transform.Translate(596.7499f,283.625f,0);
             }
             else
             {
@@ -53,15 +64,15 @@ public class Player_CardsManager : MonoBehaviour
         {
             print("HAND SIZE AT MAX. CANNOT ADD MORE");
 
-            Vector3 pos = new(0,0,0);
-            if(GM.Summoner.s1.open == true) {pos = new(-330,-180,-1); GM.Summoner.s1.open = false;}
-            else if(GM.Summoner.s2.open == true) {pos = new(-270,-180,-1); GM.Summoner.s2.open = false;}
-            else if(GM.Summoner.s3.open == true) {pos = new(-215,-180,-1); GM.Summoner.s3.open = false;}
-            else print("MAJOR ERROR: ATTEMPTING TO INSTANTIATE CARD WITH ALL SLOTS FULL");
-            print("NEW CARD POSITION: " + pos);
+            // Vector3 pos = new(0,0,0);
+            // if(GM.Summoner.s1.open == true) {pos = new(-95,-190,-1); GM.Summoner.s1.open = false;}
+            // else if(GM.Summoner.s2.open == true) {pos = new(0,-190,-1); GM.Summoner.s2.open = false;}
+            // else if(GM.Summoner.s3.open == true) {pos = new(95,-190,-1); GM.Summoner.s3.open = false;}
+            // else print("MAJOR ERROR: ATTEMPTING TO INSTANTIATE CARD WITH ALL SLOTS FULL");
+            // print("NEW CARD POSITION: " + pos);
             
-            Card newHandMember = Instantiate(blank,pos,Quaternion.identity,GM.canvas.transform);
-            newHandMember.data = hand[(int)GM.RNG(0,hand.Count - 1)];
+            // Card newHandMember = Instantiate(blank,pos,Quaternion.identity,GM.canvas.transform);
+            // newHandMember.data = hand[(int)GM.RNG(0,hand.Count - 1)];
             // newHandMember.transform.SetParent(GM.canvas.transform);
         }
     }
