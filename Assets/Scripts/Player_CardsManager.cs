@@ -52,6 +52,7 @@ public class Player_CardsManager : MonoBehaviour
                 
                 Card newHandMember = Instantiate(blank,pos,Quaternion.identity,GM.canvas.transform);
                 newHandMember.data = hand[(int)GM.RNG(0,hand.Count - 1)];
+                newHandMember.name = newHandMember.data.card_name + " Card (Slot " + slot.num + ")";
                 newHandMember.transform.Translate(527.5f,226.25f,0);
                 if (slot != null) {slot.card = newHandMember;}
             }
