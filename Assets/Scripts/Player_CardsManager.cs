@@ -41,16 +41,19 @@ public class Player_CardsManager : MonoBehaviour
                 hand.Add(deck[newCard]);
                 deck.Remove(deck[newCard]);
 
+                Slots slot = null;
+
                 Vector3 pos = new(0,0,0);
-                if(GM.Summoner.s1.open == true) {pos = new(-95,-190,-1); GM.Summoner.s1.open = false;}
-                else if(GM.Summoner.s2.open == true) {pos = new(0,-190,-1); GM.Summoner.s2.open = false;}
-                else if(GM.Summoner.s3.open == true) {pos = new(95,-190,-1); GM.Summoner.s3.open = false;}
+                if(GM.Summoner.s1.open == true) {pos = new(-75,-150,-1); GM.Summoner.s1.open = false; slot = GM.Summoner.s1;}
+                else if(GM.Summoner.s2.open == true) {pos = new(0,-150,-1); GM.Summoner.s2.open = false; slot = GM.Summoner.s2;}
+                else if(GM.Summoner.s3.open == true) {pos = new(75,-150,-1); GM.Summoner.s3.open = false; slot = GM.Summoner.s3;}
                 else print("MAJOR ERROR: ATTEMPTING TO INSTANTIATE CARD WITH ALL SLOTS FULL");
                 print("NEW CARD POSITION: " + pos);
                 
                 Card newHandMember = Instantiate(blank,pos,Quaternion.identity,GM.canvas.transform);
                 newHandMember.data = hand[(int)GM.RNG(0,hand.Count - 1)];
-                newHandMember.transform.Translate(596.7499f,283.625f,0);
+                newHandMember.transform.Translate(527.5f,226.25f,0);
+                if (slot != null) {slot.card = newHandMember;}
             }
             else
             {
