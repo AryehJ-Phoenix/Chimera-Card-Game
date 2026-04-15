@@ -7,7 +7,7 @@ public class Card_data : ScriptableObject
 {
     public string card_name;
     public string description;
-    public bool disjointed;
+    public bool disjointed = false;
     public int aoeType;
     public int damage;
     public int range;

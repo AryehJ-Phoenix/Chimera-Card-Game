@@ -37,7 +37,8 @@ public class Card : MonoBehaviour
         nameText.text = card_name;
         descriptionText.text = description;
         damageText.text = damage.ToString();
-        disjointedText.text = disjointed.ToString();
+        rangeText.text = range.ToString();
+        if (disjointed == true) {disjointedText.text = "D";} else {disjointedText.text = "C";}
         spriteImage.sprite = sprite;
         if (aoeType == 1) {aoeTypeText.text = "P";}
         else if (aoeType == 2) {aoeTypeText.text = "L";}

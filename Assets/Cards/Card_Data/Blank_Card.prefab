@@ -65,7 +65,7 @@ MonoBehaviour:
   aoeTypeText: {fileID: 3415455958271070831}
   damageText: {fileID: 5894728742779797524}
   rangeText: {fileID: 1834597192991454445}
-  disjointedText: {fileID: 0}
+  disjointedText: {fileID: 1578845413589995375}
   spriteImage: {fileID: 8706265603331512291}
 --- !u!1 &2135455900782022775
 GameObject:
