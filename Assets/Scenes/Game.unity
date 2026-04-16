@@ -1066,7 +1066,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 52ae3d4a2f4854ed3b7d1b2a32956086, type: 2}
   hand: []
   discard: []
-  blank: {fileID: 4608709814338197990, guid: 99ef4bccd68e84d9ba6e7c8051daf70b, type: 3}
+  blank: {fileID: 8989335780227048477, guid: fa62856d90ccf8a49b59d2f374bc7cd5, type: 3}
 --- !u!1 &1761292048
 GameObject:
   m_ObjectHideFlags: 0

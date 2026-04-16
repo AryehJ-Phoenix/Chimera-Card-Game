@@ -23,6 +23,7 @@ public class Card : MonoBehaviour
     public TextMeshProUGUI rangeText;
     public TextMeshProUGUI disjointedText;
     public Image spriteImage;
+    public Image back;
         
 
     // Start is called before the first frame update
@@ -50,28 +51,8 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (transform.rotation.y > 0) {transform.Rotate(0,-1,0);}
+        if (transform.rotation.y > 0) {transform.Rotate(0,-2,0);}
 
-        if (transform.rotation.y > 90 && transform.rotation.y < 350)
-        {
-            spriteImage.color = new(1,1,1,0);
-            nameText.alpha = 0;
-            descriptionText.alpha = 0;
-            damageText.alpha = 0;
-            aoeTypeText.alpha = 0;
-            rangeText.alpha = 0;
-            disjointedText.alpha = 0;
-        }
-        if (transform.rotation.y < 90 || transform.rotation.y > 350)
-        {
-            print("VIS");
-            spriteImage.color = new(1,1,1,1);
-            nameText.alpha = 1;
-            descriptionText.alpha = 1;
-            damageText.alpha = 1;
-            aoeTypeText.alpha = 1;
-            rangeText.alpha = 1;
-            disjointedText.alpha = 1;
-        }
+        if (transform.rotation.y < 0.75) {back.color = new(1,0,0,0);}
     }
 }
