@@ -226,6 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Slots
   num: 3
   open: 1
+  card: {fileID: 0}
 --- !u!61 &141190258
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -379,6 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Slots
   num: 1
   open: 1
+  card: {fileID: 0}
 --- !u!61 &213534880
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -652,7 +654,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999351266}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -10, z: -1}
   m_LocalScale: {x: 15, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
@@ -673,6 +675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Slots
   num: 2
   open: 1
+  card: {fileID: 0}
 --- !u!61 &999351270
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -44,11 +44,34 @@ public class Card : MonoBehaviour
         else if (aoeType == 2) {aoeTypeText.text = "L";}
         else if (aoeType == 3) {aoeTypeText.text = "C";}
 
+        transform.Rotate(0,180,0);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        if (transform.rotation.y > 0) {transform.Rotate(0,-1,0);}
+
+        if (transform.rotation.y > 90 && transform.rotation.y < 350)
+        {
+            spriteImage.color = new(1,1,1,0);
+            nameText.alpha = 0;
+            descriptionText.alpha = 0;
+            damageText.alpha = 0;
+            aoeTypeText.alpha = 0;
+            rangeText.alpha = 0;
+            disjointedText.alpha = 0;
+        }
+        if (transform.rotation.y < 90 || transform.rotation.y > 350)
+        {
+            print("VIS");
+            spriteImage.color = new(1,1,1,1);
+            nameText.alpha = 1;
+            descriptionText.alpha = 1;
+            damageText.alpha = 1;
+            aoeTypeText.alpha = 1;
+            rangeText.alpha = 1;
+            disjointedText.alpha = 1;
+        }
     }
 }
