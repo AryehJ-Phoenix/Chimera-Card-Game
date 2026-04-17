@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using System.Net.NetworkInformation;
 
 public class Card : MonoBehaviour
 {
@@ -24,6 +25,10 @@ public class Card : MonoBehaviour
     public TextMeshProUGUI disjointedText;
     public Image spriteImage;
     public Image back;
+    public Vector3 goal = new(0,0,0);
+    float speed = 200;
+    GameManager GM;
+    public Vector3 offset;
         
 
     // Start is called before the first frame update
@@ -46,13 +51,24 @@ public class Card : MonoBehaviour
         else if (aoeType == 3) {aoeTypeText.text = "C";}
 
         transform.Rotate(0,180,0);
+        GM = FindAnyObjectByType<GameManager>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (transform.rotation.y > 0) {transform.Rotate(0,-2,0);}
+        if (transform.rotation.y > 0) {transform.Rotate(0,-5,0);}
 
         if (transform.rotation.y < 0.75) {back.color = new(1,0,0,0);}
+
+        if (Vector3.Distance(transform.position,goal) > 1)
+        {
+            transform.position = Vector3.MoveTowards(transform.position,goal,speed*Time.deltaTime);
+        }
+    }
+
+    public void followMouse()
+    {
+        transform.position = GM.mousePos + offset;
     }
 }

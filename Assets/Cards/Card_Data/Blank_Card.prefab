@@ -979,6 +979,8 @@ MonoBehaviour:
   disjointedText: {fileID: 2688197261923616762}
   spriteImage: {fileID: 4141518478841916947}
   back: {fileID: 444879365260408359}
+  goal: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &9136469563407402110
 GameObject:
   m_ObjectHideFlags: 0

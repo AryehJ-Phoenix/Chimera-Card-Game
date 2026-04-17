@@ -763,6 +763,10 @@ MonoBehaviour:
   slot_1: {fileID: 0}
   slot_2: {fileID: 0}
   slot_3: {fileID: 0}
+  mac_offset: {x: 527.5, y: 226.25, z: 0}
+  laptop_offset: {x: 0, y: 0, z: 0}
+  mac: 1
+  mousePos: {x: 0, y: 0, z: 0}
 --- !u!4 &1017834355
 Transform:
   m_ObjectHideFlags: 0

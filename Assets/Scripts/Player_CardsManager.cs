@@ -50,11 +50,14 @@ public class Player_CardsManager : MonoBehaviour
                 else print("MAJOR ERROR: ATTEMPTING TO INSTANTIATE CARD WITH ALL SLOTS FULL");
                 print("NEW CARD POSITION: " + pos);
                 
-                Card newHandMember = Instantiate(blank,pos,Quaternion.identity,GM.canvas.transform);
+                Card newHandMember = Instantiate(blank,new(0,-250,0),Quaternion.identity,GM.canvas.transform);
                 newHandMember.data = hand[(int)GM.RNG(0,hand.Count - 1)];
                 newHandMember.name = newHandMember.data.card_name + " Card (Slot " + slot.num + ")";
-                newHandMember.transform.Translate(527.5f,226.25f,0);
+                Vector3 offset; if (GM.mac) {offset = GM.mac_offset;} else {offset = GM.laptop_offset;}
+                newHandMember.transform.Translate(offset);
+                newHandMember.goal = pos + offset;
                 if (slot != null) {slot.card = newHandMember;}
+                newHandMember.offset = offset;
             }
             else
             {

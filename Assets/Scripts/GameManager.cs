@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -20,6 +21,11 @@ public class GameManager : MonoBehaviour
     public Slots slot_2 = null;
     public Slots slot_3 = null;
     Slots obj;
+    public Vector3 mac_offset = new(527.5f,226.25f,0);
+    public Vector3 laptop_offset = new(0,0,0);
+    public bool mac = true;
+    public Vector3 mousePos;
+
     private void Awake()
     {
         if (gm != null && gm != this)
@@ -48,6 +54,8 @@ public class GameManager : MonoBehaviour
         if (Summoner.s1 != null) {slot_1 = Summoner.s1;}
         if (Summoner.s2 != null) {slot_2 = Summoner.s2;}
         if (Summoner.s3 != null) {slot_3 = Summoner.s3;}
+
+        mousePos = new(Mouse.current.position.ReadValue().x - 530, Mouse.current.position.ReadValue().y - 225);
     }
 
     void Deal()
