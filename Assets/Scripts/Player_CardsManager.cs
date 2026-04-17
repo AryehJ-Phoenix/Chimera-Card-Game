@@ -47,8 +47,6 @@ public class Player_CardsManager : MonoBehaviour
                 if(GM.Summoner.s1.open == true) {pos = new(-75,-150,-1); GM.Summoner.s1.open = false; slot = GM.Summoner.s1;}
                 else if(GM.Summoner.s2.open == true) {pos = new(0,-150,-1); GM.Summoner.s2.open = false; slot = GM.Summoner.s2;}
                 else if(GM.Summoner.s3.open == true) {pos = new(75,-150,-1); GM.Summoner.s3.open = false; slot = GM.Summoner.s3;}
-                else print("MAJOR ERROR: ATTEMPTING TO INSTANTIATE CARD WITH ALL SLOTS FULL");
-                print("NEW CARD POSITION: " + pos);
                 
                 Card newHandMember = Instantiate(blank,new(0,-250,0),Quaternion.identity,GM.canvas.transform);
                 newHandMember.data = hand[(int)GM.RNG(0,hand.Count - 1)];
@@ -58,6 +56,7 @@ public class Player_CardsManager : MonoBehaviour
                 newHandMember.goal = pos + offset;
                 if (slot != null) {slot.card = newHandMember;}
                 newHandMember.offset = offset;
+                newHandMember.slot = slot;
             }
             else
             {

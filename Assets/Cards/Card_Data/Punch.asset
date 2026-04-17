@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c025b4487bfbb41fca186c7d9d6e18a5, type: 3}
-  m_Name: Headbut
+  m_Name: Punch
   m_EditorClassIdentifier: Assembly-CSharp::Card_data
-  card_name: Headbut
-  description: Headbut in the direction that this card is dropped
+  card_name: Punch
+  description: Punch in a direction
   disjointed: 0
-  aoeType: 2
+  aoeType: 1
   damage: 3
   range: 10
-  sprite: {fileID: 21300000, guid: 7283963d719ffdb4db01aafb6afe1ab6, type: 3}
+  sprite: {fileID: 21300000, guid: 35bf6aac65a5045e090ea22961556848, type: 3}

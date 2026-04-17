@@ -28,7 +28,11 @@ public class Card : MonoBehaviour
     public Vector3 goal = new(0,0,0);
     float speed = 200;
     GameManager GM;
+    Player_CardsManager CM;
     public Vector3 offset;
+    public Button myButton;
+    bool isFollowing = false;
+    public Slots slot = null;
         
 
     // Start is called before the first frame update
@@ -52,6 +56,10 @@ public class Card : MonoBehaviour
 
         transform.Rotate(0,180,0);
         GM = FindAnyObjectByType<GameManager>();
+        CM = FindAnyObjectByType<Player_CardsManager>();
+
+        myButton.onClick.AddListener(OnButtonClicked);
+        print(myButton);
     }
 
     // Update is called once per frame
@@ -65,10 +73,20 @@ public class Card : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position,goal,speed*Time.deltaTime);
         }
+
+        if (isFollowing) {transform.position = GM.mousePos + offset;}
     }
 
-    public void followMouse()
+    void OnButtonClicked()
     {
-        transform.position = GM.mousePos + offset;
+        print("CLICKED CARD");
+        if (isFollowing == false) {isFollowing = true; transform.Translate(0,0,-1);}
+        else
+        {
+            CM.hand.Remove(data);
+            CM.discard.Add(data);
+            if (slot != null) {slot.open = true;}
+            Destroy(this.gameObject);
+        }
     }
 }
