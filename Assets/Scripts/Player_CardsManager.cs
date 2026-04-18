@@ -54,6 +54,7 @@ public class Player_CardsManager : MonoBehaviour
                 Vector3 offset; if (GM.mac) {offset = GM.mac_offset;} else {offset = GM.laptop_offset;}
                 newHandMember.transform.Translate(offset);
                 newHandMember.goal = pos + offset;
+                if (GM.mac) {newHandMember.transform.localScale = GM.mac_scale;} else {newHandMember.transform.localScale = GM.laptop_scale;}
                 if (slot != null) {slot.card = newHandMember;}
                 newHandMember.offset = offset;
                 newHandMember.slot = slot;

@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour
     public Slots slot_3 = null;
     Slots obj;
     public Vector3 mac_offset = new(527.5f,226.25f,0);
-    public Vector3 laptop_offset = new(0,0,0);
+    public Vector3 laptop_offset = new(597.75f,236.6296f,0);
+    public Vector3 mac_scale = new(0.2f,0.2f,0.2f);
+    public Vector3 laptop_scale = new(0.25f,0.25f,0.25f);
     public bool mac = true;
     public Vector3 mousePos;
 
