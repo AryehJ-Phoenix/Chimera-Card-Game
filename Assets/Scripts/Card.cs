@@ -59,7 +59,6 @@ public class Card : MonoBehaviour
         CM = FindAnyObjectByType<Player_CardsManager>();
 
         myButton.onClick.AddListener(OnButtonClicked);
-        print(myButton);
     }
 
     // Update is called once per frame
@@ -79,7 +78,6 @@ public class Card : MonoBehaviour
 
     void OnButtonClicked()
     {
-        print("CLICKED CARD");
         if (isFollowing == false) {isFollowing = true; transform.Translate(0,0,-1);}
         else
         {

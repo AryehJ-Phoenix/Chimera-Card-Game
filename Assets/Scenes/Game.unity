@@ -767,7 +767,7 @@ MonoBehaviour:
   laptop_offset: {x: 597.75, y: 236.6296, z: 0}
   mac_scale: {x: 0.2, y: 0.2, z: 0.2}
   laptop_scale: {x: 0.25, y: 0.25, z: 0.25}
-  mac: 0
+  mac: 1
   mousePos: {x: 0, y: 0, z: 0}
 --- !u!4 &1017834355
 Transform:

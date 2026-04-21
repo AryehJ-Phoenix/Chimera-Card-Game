@@ -10,6 +10,7 @@ public class Player_CardsManager : MonoBehaviour
     public List<Card_data> discard = new();
     [SerializeField] Card blank;
     GameManager GM;
+    public bool holding = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,7 +40,6 @@ public class Player_CardsManager : MonoBehaviour
             {
                 int newCard = (int)GM.RNG(0,deck.Count-1);
                 hand.Add(deck[newCard]);
-                deck.Remove(deck[newCard]);
 
                 Slots slot = null;
 
@@ -49,7 +49,7 @@ public class Player_CardsManager : MonoBehaviour
                 else if(GM.Summoner.s3.open == true) {pos = new(75,-150,-1); GM.Summoner.s3.open = false; slot = GM.Summoner.s3;}
                 
                 Card newHandMember = Instantiate(blank,new(0,-250,0),Quaternion.identity,GM.canvas.transform);
-                newHandMember.data = hand[(int)GM.RNG(0,hand.Count - 1)];
+                newHandMember.data = deck[newCard];
                 newHandMember.name = newHandMember.data.card_name + " Card (Slot " + slot.num + ")";
                 Vector3 offset; if (GM.mac) {offset = GM.mac_offset;} else {offset = GM.laptop_offset;}
                 newHandMember.transform.Translate(offset);
@@ -58,6 +58,8 @@ public class Player_CardsManager : MonoBehaviour
                 if (slot != null) {slot.card = newHandMember;}
                 newHandMember.offset = offset;
                 newHandMember.slot = slot;
+
+                deck.Remove(deck[newCard]);
             }
             else
             {
@@ -69,7 +71,6 @@ public class Player_CardsManager : MonoBehaviour
 
         else 
         {
-            print("HAND SIZE AT MAX. CANNOT ADD MORE");
 
             // Vector3 pos = new(0,0,0);
             // if(GM.Summoner.s1.open == true) {pos = new(-95,-190,-1); GM.Summoner.s1.open = false;}
