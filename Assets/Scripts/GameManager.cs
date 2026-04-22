@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     public Slots slot_2 = null;
     public Slots slot_3 = null;
     Slots obj;
-    public Vector3 mac_offset = new(527.5f,226.25f,0);
-    public Vector3 laptop_offset = new(597.75f,236.6296f,0);
+    public Vector2 mac_offset = new(528.25f,226.25f);
+    public Vector2 laptop_offset = new(597.75f,236.6296f);
     public Vector3 mac_scale = new(0.2f,0.2f,0.2f);
     public Vector3 laptop_scale = new(0.25f,0.25f,0.25f);
     public bool mac = true;
@@ -57,7 +57,8 @@ public class GameManager : MonoBehaviour
         if (Summoner.s2 != null) {slot_2 = Summoner.s2;}
         if (Summoner.s3 != null) {slot_3 = Summoner.s3;}
 
-        mousePos = new(Mouse.current.position.ReadValue().x - 530, Mouse.current.position.ReadValue().y - 225);
+        if (mac) {mousePos = Mouse.current.position.ReadValue() - mac_offset;}
+        else {mousePos = Mouse.current.position.ReadValue() - laptop_offset;}
     }
 
     void Deal()

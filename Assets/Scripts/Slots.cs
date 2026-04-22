@@ -28,7 +28,7 @@ public class Slots : MonoBehaviour
         }
         if (vis == false && visibility > 0.2)
         {
-            print("DISS");
+            //print("DISS");
             // Vector4.MoveTowards(GetComponent<SpriteRenderer>().color,new(1,1,1,0.5f),0.1f);
             // if (card != null) {Vector4.MoveTowards(card.GetComponentInChildren<CanvasRenderer>().GetColor(),new(1,1,1,0.5f),0.1f);}
 
@@ -36,7 +36,7 @@ public class Slots : MonoBehaviour
         }
 
         GetComponent<SpriteRenderer>().color = new(1,1,1,visibility);
-        if (card != null) {card.GetComponentInChildren<CanvasRenderer>().SetColor(new(1,1,1,visibility));}
+        if (card != null && card.isFollowing == false) {card.GetComponentInChildren<CanvasRenderer>().SetColor(new(1,1,1,visibility));}
     }
 
     void OnTriggerEnter2D(Collider2D collision)

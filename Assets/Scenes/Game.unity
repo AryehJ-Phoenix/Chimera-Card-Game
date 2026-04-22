@@ -763,8 +763,8 @@ MonoBehaviour:
   slot_1: {fileID: 0}
   slot_2: {fileID: 0}
   slot_3: {fileID: 0}
-  mac_offset: {x: 527.5, y: 226.25, z: 0}
-  laptop_offset: {x: 597.75, y: 236.6296, z: 0}
+  mac_offset: {x: 528.25, y: 226.25}
+  laptop_offset: {x: 597.75, y: 236.6296}
   mac_scale: {x: 0.2, y: 0.2, z: 0.2}
   laptop_scale: {x: 0.25, y: 0.25, z: 0.25}
   mac: 1
@@ -1073,6 +1073,7 @@ MonoBehaviour:
   hand: []
   discard: []
   blank: {fileID: 8989335780227048477, guid: fa62856d90ccf8a49b59d2f374bc7cd5, type: 3}
+  holding: 0
 --- !u!1 &1761292048
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public class Card : MonoBehaviour
     Player_CardsManager CM;
     public Vector3 offset;
     public Button myButton;
-    bool isFollowing = false;
+    public bool isFollowing = false;
     public Slots slot = null;
         
 
