@@ -10,10 +10,16 @@ public class Slots : MonoBehaviour
     bool vis = true;
     float visibility = 1;
     float visibilityChange = 0.02f;
+    Vector3 card_goal;
+    Vector3 goal1 = new(-75,-150,-1);
+    Vector3 goal2 = new(0,-150,-1);
+    Vector3 goal3 = new(75,-150,-1);
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         GM = FindAnyObjectByType<GameManager>();
+        if (num == 1) {card_goal = goal1;} if (num == 2) {card_goal = goal2;} if (num == 3) {card_goal = goal3;}
     }
 
     // Update is called once per frame
@@ -37,6 +43,12 @@ public class Slots : MonoBehaviour
 
         GetComponent<SpriteRenderer>().color = new(1,1,1,visibility);
         if (card != null && card.isFollowing == false) {card.GetComponentInChildren<CanvasRenderer>().SetColor(new(1,1,1,visibility));}
+        if (card != null && card.isFollowing) {card.GetComponentInChildren<CanvasRenderer>().SetColor(new(1,1,1,1));}
+
+        if (card != null && card.goal != transform.position)
+        {
+            card.goal = card_goal + (Vector3)GM.screen_offset/2;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)

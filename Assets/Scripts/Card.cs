@@ -5,8 +5,9 @@ using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
 using System.Net.NetworkInformation;
+using UnityEngine.EventSystems;
 
-public class Card : MonoBehaviour
+public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandler
 {
     public Card_data data;
 
@@ -33,6 +34,7 @@ public class Card : MonoBehaviour
     public Button myButton;
     public bool isFollowing = false;
     public Slots slot = null;
+    RectTransform rectTransform;
         
 
     // Start is called before the first frame update
@@ -58,7 +60,7 @@ public class Card : MonoBehaviour
         GM = FindAnyObjectByType<GameManager>();
         CM = FindAnyObjectByType<Player_CardsManager>();
 
-        myButton.onClick.AddListener(OnButtonClicked);
+        rectTransform = GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
@@ -68,23 +70,26 @@ public class Card : MonoBehaviour
 
         if (transform.rotation.y < 0.75) {back.color = new(1,0,0,0);}
 
-        if (Vector3.Distance(transform.position,goal) > 1)
+        if (Vector3.Distance(transform.position,goal) > 1 && !isFollowing)
         {
             transform.position = Vector3.MoveTowards(transform.position,goal,speed*Time.deltaTime);
         }
-
-        if (isFollowing) {transform.position = GM.mousePos + offset;}
     }
 
-    void OnButtonClicked()
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        if (isFollowing == false) {isFollowing = true; transform.Translate(0,0,-1);}
-        else
-        {
-            CM.hand.Remove(data);
-            CM.discard.Add(data);
-            if (slot != null) {slot.open = true;}
-            Destroy(this.gameObject);
-        }
+        print("Starting to drag " + gameObject.name);
+        isFollowing = true;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        rectTransform.anchoredPosition += eventData.delta / GM.canvas.scaleFactor;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        print("Ending dragging " + gameObject.name);
+        isFollowing = false;
     }
 }

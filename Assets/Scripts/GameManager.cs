@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public Vector3 laptop_scale = new(0.25f,0.25f,0.25f);
     public bool mac = true;
     public Vector3 mousePos;
+    public Vector2 screen_offset;
 
     private void Awake()
     {
@@ -57,8 +58,10 @@ public class GameManager : MonoBehaviour
         if (Summoner.s2 != null) {slot_2 = Summoner.s2;}
         if (Summoner.s3 != null) {slot_3 = Summoner.s3;}
 
-        if (mac) {mousePos = Mouse.current.position.ReadValue() - mac_offset;}
-        else {mousePos = Mouse.current.position.ReadValue() - laptop_offset;}
+        // if (mac) {mousePos = Mouse.current.position.ReadValue() - mac_offset;}
+        // else {mousePos = Mouse.current.position.ReadValue() - laptop_offset;}
+        screen_offset = canvas.renderingDisplaySize;
+        mousePos = Mouse.current.position.ReadValue() - screen_offset/2;
     }
 
     void Deal()

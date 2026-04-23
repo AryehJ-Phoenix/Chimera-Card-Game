@@ -44,20 +44,18 @@ public class Player_CardsManager : MonoBehaviour
                 Slots slot = null;
 
                 Vector3 pos = new(0,0,0);
-                if(GM.Summoner.s1.open == true) {pos = new(-75,-150,-1); GM.Summoner.s1.open = false; slot = GM.Summoner.s1;}
-                else if(GM.Summoner.s2.open == true) {pos = new(0,-150,-1); GM.Summoner.s2.open = false; slot = GM.Summoner.s2;}
-                else if(GM.Summoner.s3.open == true) {pos = new(75,-150,-1); GM.Summoner.s3.open = false; slot = GM.Summoner.s3;}
+                if(GM.Summoner.s1.open == true) {GM.Summoner.s1.open = false; slot = GM.Summoner.s1;}
+                else if(GM.Summoner.s2.open == true) {GM.Summoner.s2.open = false; slot = GM.Summoner.s2;}
+                else if(GM.Summoner.s3.open == true) {GM.Summoner.s3.open = false; slot = GM.Summoner.s3;}
                 
                 Card newHandMember = Instantiate(blank,new(0,-250,0),Quaternion.identity,GM.canvas.transform);
                 newHandMember.data = deck[newCard];
                 newHandMember.name = newHandMember.data.card_name + " Card (Slot " + slot.num + ")";
-                Vector3 offset; if (GM.mac) {offset = GM.mac_offset;} else {offset = GM.laptop_offset;}
-                newHandMember.transform.Translate(offset);
-                newHandMember.goal = pos + offset;
+                newHandMember.transform.Translate(GM.screen_offset/2);
+                //newHandMember.goal = pos + (Vector3)GM.screen_offset/2;
                 if (GM.mac) {newHandMember.transform.localScale = GM.mac_scale;} else {newHandMember.transform.localScale = GM.laptop_scale;}
                 if (slot != null) {slot.card = newHandMember;}
-                newHandMember.offset = offset;
-                newHandMember.slot = slot;
+                //newHandMember.slot = slot;
 
                 deck.Remove(deck[newCard]);
             }
