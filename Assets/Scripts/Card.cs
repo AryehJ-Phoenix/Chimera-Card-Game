@@ -91,5 +91,15 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
     {
         print("Ending dragging " + gameObject.name);
         isFollowing = false;
+        Discard();
+    }
+
+    void Discard()
+    {
+        print("Discarding " + name);
+        slot.open = true;
+        CM.discard.Add(data);
+        CM.hand.Remove(data);
+        Destroy(gameObject);
     }
 }

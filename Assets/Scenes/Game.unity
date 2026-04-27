@@ -769,6 +769,7 @@ MonoBehaviour:
   laptop_scale: {x: 0.25, y: 0.25, z: 0.25}
   mac: 1
   mousePos: {x: 0, y: 0, z: 0}
+  screen_offset: {x: 0, y: 0}
 --- !u!4 &1017834355
 Transform:
   m_ObjectHideFlags: 0
@@ -1073,7 +1074,6 @@ MonoBehaviour:
   hand: []
   discard: []
   blank: {fileID: 8989335780227048477, guid: fa62856d90ccf8a49b59d2f374bc7cd5, type: 3}
-  holding: 0
 --- !u!1 &1761292048
 GameObject:
   m_ObjectHideFlags: 0
