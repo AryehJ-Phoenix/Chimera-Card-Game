@@ -1066,8 +1066,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player_CardsManager
   deck:
-  - {fileID: 11400000, guid: 60378559fe9554432aec588df47e9620, type: 2}
-  - {fileID: 11400000, guid: 52ae3d4a2f4854ed3b7d1b2a32956086, type: 2}
   - {fileID: 11400000, guid: 52ae3d4a2f4854ed3b7d1b2a32956086, type: 2}
   - {fileID: 11400000, guid: 52ae3d4a2f4854ed3b7d1b2a32956086, type: 2}
   - {fileID: 11400000, guid: 52ae3d4a2f4854ed3b7d1b2a32956086, type: 2}

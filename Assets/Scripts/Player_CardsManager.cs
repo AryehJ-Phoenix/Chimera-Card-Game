@@ -36,7 +36,7 @@ public class Player_CardsManager : MonoBehaviour
     {
         int drawUpTo = 3;
         if (deck.Count + discard.Count < 3 - hand.Count) {drawUpTo = deck.Count + discard.Count;}
-        if (hand.Count  == 3) {drawUpTo = 0;}
+        if (hand.Count  >= 3) {drawUpTo = 0;}
         print("Drawing up to " + drawUpTo);
 
         for (int i = 3 - drawUpTo; i < 3; i++)
