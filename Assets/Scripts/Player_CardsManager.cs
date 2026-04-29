@@ -29,13 +29,14 @@ public class Player_CardsManager : MonoBehaviour
         if(context.performed)
         {
             Draw();
+            print("SACE");
         }
     }
 
     public void Draw()
     {
-        int drawUpTo = 3;
-        if (deck.Count + discard.Count < 3 - hand.Count) {drawUpTo = deck.Count + discard.Count;}
+        int drawUpTo = 3 - hand.Count;
+        if (deck.Count + discard.Count < drawUpTo) {drawUpTo = deck.Count + discard.Count;}
         if (hand.Count  >= 3) {drawUpTo = 0;}
         print("Drawing up to " + drawUpTo);
 
