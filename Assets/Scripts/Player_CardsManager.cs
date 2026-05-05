@@ -79,4 +79,16 @@ public class Player_CardsManager : MonoBehaviour
             discard.Remove(discard[newCard]);
         }
     }
+
+    public void PlayCard(Card_data card)
+    {
+        switch (card.type)
+        {
+            case Card_data.Card_type.Damage:
+                break;
+            default:
+                break;
+
+        }
+    }
 }

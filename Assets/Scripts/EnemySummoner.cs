@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySummoner : MonoBehaviour
 {
+    public Image cd_circle;
     public Slots s1;
     public Slots s2;
     public Slots s3;

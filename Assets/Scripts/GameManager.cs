@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,8 +31,9 @@ public class GameManager : MonoBehaviour
     public bool mac = true;
     public Vector3 mousePos;
     public Vector2 screen_offset;
-    float drawTime = 3;
-    float drawTimer;       
+    public float drawTime = 4;
+    float drawTimer;
+    Image cd_circle;
 
     private void Awake()
     {
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        drawTimer = drawTime;
+        drawTimer = 1f;
     }
 
     // Update is called once per frame
@@ -68,9 +70,12 @@ public class GameManager : MonoBehaviour
         screen_offset = canvas.renderingDisplaySize;
         mousePos = Mouse.current.position.ReadValue() - screen_offset/2;
 
-        drawTimer -= Time.deltaTime;
+        if (Summoner != null && cd_circle == null) {cd_circle = Summoner.cd_circle;}
+        if (cd_circle != null) {cd_circle.fillAmount = drawTimer;}
 
-        if (drawTimer <= 0) {if (CM != null) {CM.Draw();} drawTimer = drawTime;}
+        drawTimer -= Time.deltaTime/drawTime;
+
+        if (drawTimer <= 0) {if (CM != null) {CM.Draw();} drawTimer = 1f;}
     }
 
     void Deal()
