@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using Unity.VisualScripting;
 using System.Net.NetworkInformation;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandler
 {
@@ -13,8 +14,8 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
 
     public string card_name;
     public string description;
-    public bool disjointed;
-    public int aoeType;
+    public string originateFrom;
+    public string aoeType;
     public int damage;
     public int range;
     public Sprite sprite;
@@ -23,7 +24,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
     public TextMeshProUGUI aoeTypeText;
     public TextMeshProUGUI damageText;
     public TextMeshProUGUI rangeText;
-    public TextMeshProUGUI disjointedText;
+    public TextMeshProUGUI originateFromText;
     public Image spriteImage;
     public Image back;
     public Vector3 goal = new(0,0,0);
@@ -42,19 +43,17 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
     {
         card_name = data.card_name;
         description = data.description;
-        disjointed = data.disjointed;
-        aoeType = data.aoeType;
+        originateFrom = data.originateFrom.ToString();
+        aoeType = data.aoe.ToString();
         damage = data.damage;
         sprite = data.sprite;
         nameText.text = card_name;
         descriptionText.text = description;
         damageText.text = damage.ToString();
         rangeText.text = range.ToString();
-        if (disjointed == true) {disjointedText.text = "D";} else {disjointedText.text = "C";}
+        originateFromText.text = originateFrom.Substring(0,1);
+        aoeTypeText.text = aoeType.Substring(0,1);
         spriteImage.sprite = sprite;
-        if (aoeType == 1) {aoeTypeText.text = "P";}
-        else if (aoeType == 2) {aoeTypeText.text = "L";}
-        else if (aoeType == 3) {aoeTypeText.text = "C";}
 
         transform.Rotate(0,180,0);
         GM = FindAnyObjectByType<GameManager>();
@@ -98,6 +97,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
     {
         print("Discarding " + name);
         slot.open = true;
+        GM.Summoner.CBM.FindCardEffect(data,GM.Player,//FUCKIUONVEOJRNVJORNIJERBIERBHI)
         CM.discard.Add(data);
         CM.hand.Remove(data);
         Destroy(gameObject);

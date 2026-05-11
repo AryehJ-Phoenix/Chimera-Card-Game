@@ -12,11 +12,13 @@ public class EnemySummoner : MonoBehaviour
     float spawnTimer;
     float spawnTime = 5;
     GameManager GM;
+    public Card_Behavior_Manager CBM;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         GM = FindAnyObjectByType<GameManager>();
+        CBM = FindAnyObjectByType<Card_Behavior_Manager>();
 
         spawnTimer = spawnTime;
     }

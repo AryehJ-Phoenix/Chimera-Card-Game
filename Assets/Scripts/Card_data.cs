@@ -5,8 +5,19 @@ public class Card_data : ScriptableObject
 {
     public string card_name;
     public string description;
-    public bool disjointed = false;
-    public int aoeType;
+    public enum Origin
+    {
+        Connected,
+        Disconnected
+    }
+    public Origin originateFrom;
+    public enum aoeType
+    {
+        Curve,
+        Line,
+        Round
+    }
+    public aoeType aoe;
     public int damage;
     public int range;
     public Sprite sprite;
