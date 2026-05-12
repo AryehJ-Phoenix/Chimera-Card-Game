@@ -36,6 +36,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
     public bool isFollowing = false;
     public Slots slot = null;
     RectTransform rectTransform;
+    public bool playerCard = true;
         
 
     // Start is called before the first frame update
@@ -77,7 +78,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        print("Starting to drag " + gameObject.name);
+        // print("Starting to drag " + gameObject.name);
         isFollowing = true;
     }
 
@@ -88,7 +89,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        print("Ending dragging " + gameObject.name);
+        // print("Ending dragging " + gameObject.name);
         isFollowing = false;
         Discard();
     }
@@ -97,7 +98,8 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
     {
         print("Discarding " + name);
         slot.open = true;
-        GM.Summoner.CBM.FindCardEffect(data,GM.Player,//FUCKIUONVEOJRNVJORNIJERBIERBHI)
+        CM.FindCardEffect(data);
+        print("fulfill");
         CM.discard.Add(data);
         CM.hand.Remove(data);
         Destroy(gameObject);

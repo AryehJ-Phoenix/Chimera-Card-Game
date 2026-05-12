@@ -11,11 +11,13 @@ public class Player_CardsManager : MonoBehaviour
     public List<Card_data> discard = new();
     [SerializeField] Card blank;
     GameManager GM;
+    PlayerControl Player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         GM = FindAnyObjectByType<GameManager>();
+        Player = GM.Player;
     }
 
     // Update is called once per frame
@@ -38,7 +40,7 @@ public class Player_CardsManager : MonoBehaviour
         int drawUpTo = 3 - hand.Count;
         if (deck.Count + discard.Count < drawUpTo) {drawUpTo = deck.Count + discard.Count;}
         if (hand.Count  >= 3) {drawUpTo = 0;}
-        print("Drawing up to " + drawUpTo);
+        // print("Drawing up to " + drawUpTo);
 
         for (int i = 3 - drawUpTo; i < 3; i++)
         {
@@ -71,12 +73,40 @@ public class Player_CardsManager : MonoBehaviour
 
     void RenewDeck()
     {
-        print("SHUFFLE");
+        // print("SHUFFLE");
         for (int i = discard.Count; i > 0; i--)
         {
             int newCard = (int)GM.RNG(0,discard.Count - 1);
             deck.Add(discard[newCard]);
             discard.Remove(discard[newCard]);
         }
+    }
+
+
+
+
+
+    public void FindCardEffect(Card_data card)
+    {
+        print("Detected card name " + card.card_name);
+        if (card.card_name == "Headbut") {Headbut(card);}
+        if (card.card_name == "Punch") {Punch(card);}
+    }
+
+    void Headbut(Card_data card)
+    {
+        print("PLAYED HEADBUT");
+        // float angle;
+        // angle = Vector2.Angle(Player.transform.position,GM.mousePos);
+        // print("angle found");
+        Vector3 dir = Vector3.MoveTowards(GM.Player.transform.position,GM.mousePos,card.range);
+        // GetComponent<Rigidbody2D>().linearVelocity + dir; THIS THING!!!!!!!!!!!!!!!!!
+        print(dir);
+        //Player.transform.Translate(angle*new(1,1,1))
+    }
+
+    void Punch(Card_data card)
+    {
+        print("PLAYED PUNCH");
     }
 }
