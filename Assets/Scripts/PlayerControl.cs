@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,8 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] float acceleration = 25f;
     new Rigidbody2D rigidbody;
     float last_directionX = 1;
+    public bool canMove = true;
+    public float timeUntilMove = -1;
     //float last_directionY = 1;
     
 
@@ -26,8 +29,15 @@ public class PlayerControl : MonoBehaviour
     {
         float vX = moveInput.x * target_speed;
         float vY = moveInput.y * target_speed;
-        rigidbody.linearVelocity = new Vector2(Mathf.MoveTowards(rigidbody.linearVelocityX,vX,acceleration*Time.deltaTime),Mathf.MoveTowards(rigidbody.linearVelocityY,vY,acceleration*Time.deltaTime));
+        if (canMove)
+        {
+            rigidbody.linearVelocity = new Vector2(Mathf.MoveTowards(rigidbody.linearVelocityX,vX,acceleration*Time.deltaTime),Mathf.MoveTowards(rigidbody.linearVelocityY,vY,acceleration*Time.deltaTime));
+        }
         //transform.Translate(moveInput*speed,Space.World);
+
+        timeUntilMove -= Time.deltaTime;
+        if (timeUntilMove <= 0) {canMove = true;}
+        if (timeUntilMove > 0) {canMove = false;}
 
         if(transform.position.x > boundaries.x) {rigidbody.linearVelocityX = -20;}
         if(transform.position.x < -boundaries.x) {rigidbody.linearVelocityX = 20;}
@@ -42,6 +52,10 @@ public class PlayerControl : MonoBehaviour
 
         if (rigidbody.linearVelocityX > 0) {last_directionX = 1;}
         if (rigidbody.linearVelocityX < 0) {last_directionX = -1;}
+
+        timeUntilMove -= Time.deltaTime;
+        if (timeUntilMove <= 0) {canMove = true;}
+        if (timeUntilMove > 0) {canMove = false;}
     }
 
     public void OnMove(InputAction.CallbackContext context)

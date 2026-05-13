@@ -891,6 +891,7 @@ MonoBehaviour:
   laptop_scale: {x: 0.25, y: 0.25, z: 0.25}
   mac: 1
   mousePos: {x: 0, y: 0, z: 0}
+  mousePosIRL: {x: 0, y: 0, z: 0}
   screen_offset: {x: 0, y: 0}
   drawTime: 4
 --- !u!4 &1017834355
@@ -945,6 +946,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
   target_speed: 25
   acceleration: 75
+  canMove: 1
+  timeUntilMove: -1
 --- !u!114 &1156549874
 MonoBehaviour:
   m_ObjectHideFlags: 0

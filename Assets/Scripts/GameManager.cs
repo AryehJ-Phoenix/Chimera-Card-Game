@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     public Vector3 laptop_scale = new(0.25f,0.25f,0.25f);
     public bool mac = true;
     public Vector3 mousePos;
+    public Vector3 mousePosIRL;
     public Vector2 screen_offset;
     public float drawTime = 4;
     float drawTimer;
@@ -69,6 +71,7 @@ public class GameManager : MonoBehaviour
         // else {mousePos = Mouse.current.position.ReadValue() - laptop_offset;}
         screen_offset = canvas.renderingDisplaySize;
         mousePos = Mouse.current.position.ReadValue() - screen_offset/2;
+        mousePosIRL = Camera.main.ScreenToWorldPoint(new(Mouse.current.position.ReadValue().x,Mouse.current.position.ReadValue().y,0));
 
         if (Summoner != null && cd_circle == null) {cd_circle = Summoner.cd_circle;}
         if (cd_circle != null) {cd_circle.fillAmount = drawTimer;}
