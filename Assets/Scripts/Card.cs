@@ -96,10 +96,10 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
 
     void Discard()
     {
-        print("Discarding " + name);
+        // print("Discarding " + name);
         slot.open = true;
         CM.FindCardEffect(data);
-        print("fulfill");
+        // print("fulfill");
         CM.discard.Add(data);
         CM.hand.Remove(data);
         Destroy(gameObject);

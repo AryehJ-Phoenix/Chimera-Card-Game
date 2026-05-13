@@ -88,21 +88,22 @@ public class Player_CardsManager : MonoBehaviour
 
     public void FindCardEffect(Card_data card)
     {
-        print("Detected card name " + card.card_name);
+        //print("Detected card name " + card.card_name);
         if (card.card_name == "Headbut") {Headbut(card);}
         if (card.card_name == "Punch") {Punch(card);}
     }
 
     void Headbut(Card_data card)
     {
+        Rigidbody2D rigidbody = GM.Player.GetComponent<Rigidbody2D>();
         print("PLAYED HEADBUT");
-        // float angle;
-        // angle = Vector2.Angle(Player.transform.position,GM.mousePos);
-        // print("angle found");
-        Vector3 dir = Vector3.MoveTowards(GM.Player.transform.position,GM.mousePos,card.range);
-        // GetComponent<Rigidbody2D>().linearVelocity + dir; THIS THING!!!!!!!!!!!!!!!!!
-        print(dir);
-        //Player.transform.Translate(angle*new(1,1,1))
+
+        Vector3 angle = (GM.mousePos - GM.Player.transform.position);
+        angle.Normalize();
+
+        rigidbody.linearVelocity = (Vector2)angle*card.range*10;
+
+        //GM.Player.transform.Translate(angle*card.range * -1);
     }
 
     void Punch(Card_data card)

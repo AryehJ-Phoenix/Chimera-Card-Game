@@ -477,6 +477,7 @@ MonoBehaviour:
   s3: {fileID: 141190257}
   Enemies:
   - {fileID: 3249148676120328260, guid: 5cb2d99dca49ad344b2ec7ed6ca2ee6a, type: 3}
+  CBM: {fileID: 0}
 --- !u!1 &410485723
 GameObject:
   m_ObjectHideFlags: 0
