@@ -15,6 +15,8 @@ public class PlayerControl : MonoBehaviour
     float last_directionX = 1;
     public bool canMove = true;
     public float timeUntilMove = -1;
+    int collisions = 0;
+    float health = 10;
     //float last_directionY = 1;
     
 
@@ -54,13 +56,28 @@ public class PlayerControl : MonoBehaviour
         if (rigidbody.linearVelocityX < 0) {last_directionX = -1;}
 
         timeUntilMove -= Time.deltaTime;
-        if (timeUntilMove <= 0) {canMove = true;}
-        if (timeUntilMove > 0) {canMove = false;}
+        if (timeUntilMove <= 0 && collisions == 0) {canMove = true; GetComponent<BoxCollider2D>().isTrigger = false;}
+        if (timeUntilMove > 0) {canMove = false; GetComponent<BoxCollider2D>().isTrigger = true;}
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         // moveInput = context.ReadValue<float>();
         moveInput = context.ReadValue<Vector2>();
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        collisions++;
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        collisions--;
+    }
+
+    public void ChangeHealth(float amount)
+    {
+        health += amount;
     }
 }
