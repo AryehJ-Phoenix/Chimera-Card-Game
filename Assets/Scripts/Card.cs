@@ -37,6 +37,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
     public Slots slot = null;
     RectTransform rectTransform;
     public bool playerCard = true;
+    bool discarding = false;
         
 
     // Start is called before the first frame update
@@ -98,10 +99,29 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
     {
         // print("Discarding " + name);
         slot.open = true;
-        CM.FindCardEffect(data);
+        if (!discarding) {CM.FindCardEffect(data);}
         // print("fulfill");
         CM.discard.Add(data);
         CM.hand.Remove(data);
         Destroy(gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        print("idk man");
+        if (collision.CompareTag("Discarder"))
+        {
+            print(name + " Entered Discard");
+            discarding = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Discarder"))
+        {
+            print(name + " Exited Discard");
+            discarding = false;
+        }
     }
 }
