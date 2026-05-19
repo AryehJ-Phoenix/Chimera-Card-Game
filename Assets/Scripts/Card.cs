@@ -106,19 +106,20 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D other)
     {
         print("idk man");
-        if (collision.CompareTag("Discarder"))
+        if (other.CompareTag("Discarder"))
         {
             print(name + " Entered Discard");
             discarding = true;
         }
     }
 
-    void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (collision.CompareTag("Discarder"))
+        print("idk man but exiting");
+        if (other.CompareTag("Discarder"))
         {
             print(name + " Exited Discard");
             discarding = false;
