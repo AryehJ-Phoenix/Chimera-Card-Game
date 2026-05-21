@@ -99,9 +99,9 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
     {
         // print("Discarding " + name);
         slot.open = true;
-        if (!discarding) {CM.FindCardEffect(data);}
+        if (!discarding) {CM.FindCardEffect(data);CM.discard.Add(data);}
         // print("fulfill");
-        CM.discard.Add(data);
+        if (discarding) {GM.Player.ChangeHealth(damage);}
         CM.hand.Remove(data);
         Destroy(gameObject);
     }

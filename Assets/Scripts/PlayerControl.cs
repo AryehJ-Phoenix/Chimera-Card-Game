@@ -14,9 +14,10 @@ public class PlayerControl : MonoBehaviour
     new Rigidbody2D rigidbody;
     float last_directionX = 1;
     public bool canMove = true;
-    public float timeUntilMove = -1;
+    public float timeUntilMove = -2;
     int collisions = 0;
     float health = 10;
+    public Vector2 oldSpeed;
     //float last_directionY = 1;
     
 
@@ -37,10 +38,6 @@ public class PlayerControl : MonoBehaviour
         }
         //transform.Translate(moveInput*speed,Space.World);
 
-        timeUntilMove -= Time.deltaTime;
-        if (timeUntilMove <= 0) {canMove = true;}
-        if (timeUntilMove > 0) {canMove = false;}
-
         if(transform.position.x > boundaries.x) {rigidbody.linearVelocityX = -20;}
         if(transform.position.x < -boundaries.x) {rigidbody.linearVelocityX = 20;}
         if(transform.position.y > boundaries.y) {rigidbody.linearVelocityY = -20;}
@@ -57,6 +54,7 @@ public class PlayerControl : MonoBehaviour
 
         timeUntilMove -= Time.deltaTime;
         if (timeUntilMove <= 0 && collisions == 0) {canMove = true; GetComponent<BoxCollider2D>().isTrigger = false;}
+        if (timeUntilMove <= 0 && timeUntilMove > -1) {rigidbody.linearVelocity = oldSpeed; timeUntilMove = -2;}
         if (timeUntilMove > 0) {canMove = false; GetComponent<BoxCollider2D>().isTrigger = true;}
     }
 
@@ -78,6 +76,8 @@ public class PlayerControl : MonoBehaviour
 
     public void ChangeHealth(float amount)
     {
+        float old = health;
         health += amount;
+        print("Player Health Changed from " + old + " to " + health);
     }
 }

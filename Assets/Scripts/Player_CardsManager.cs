@@ -17,7 +17,7 @@ public class Player_CardsManager : MonoBehaviour
     void Start()
     {
         GM = FindAnyObjectByType<GameManager>();
-        Player = GM.Player;
+        Player = GetComponentInParent<PlayerControl>();
     }
 
     // Update is called once per frame
@@ -95,13 +95,14 @@ public class Player_CardsManager : MonoBehaviour
 
     void Headbut(Card_data card)
     {
-        Rigidbody2D rigidbody = GM.Player.GetComponent<Rigidbody2D>();
+        Rigidbody2D rigidbody = Player.GetComponent<Rigidbody2D>();
         print("PLAYED HEADBUT");
 
-        Vector3 angle = (GM.mousePosIRL - GM.Player.transform.position);
+        Vector3 angle = (GM.mousePosIRL - Player.transform.position);
         angle.Normalize();
+        Player.oldSpeed = rigidbody.linearVelocity;
         rigidbody.linearVelocity = new(0,0);
-        GM.Player.timeUntilMove = 0.5f;
+        Player.timeUntilMove = 0.25f;
         rigidbody.linearVelocity = 4*card.range*angle;
 
         //GM.Player.transform.Translate(angle*card.range * -1);
