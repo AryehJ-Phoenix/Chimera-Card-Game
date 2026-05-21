@@ -18,6 +18,8 @@ public class PlayerControl : MonoBehaviour
     int collisions = 0;
     float health = 10;
     public Vector2 oldSpeed;
+    public bool damaging = false;
+    GameManager GM;
     //float last_directionY = 1;
     
 
@@ -25,6 +27,7 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        GM = FindAnyObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -53,9 +56,9 @@ public class PlayerControl : MonoBehaviour
         if (rigidbody.linearVelocityX < 0) {last_directionX = -1;}
 
         timeUntilMove -= Time.deltaTime;
-        if (timeUntilMove <= 0 && collisions == 0) {canMove = true; GetComponent<BoxCollider2D>().isTrigger = false;}
-        if (timeUntilMove <= 0 && timeUntilMove > -1) {rigidbody.linearVelocity = oldSpeed; timeUntilMove = -2;}
-        if (timeUntilMove > 0) {canMove = false; GetComponent<BoxCollider2D>().isTrigger = true;}
+        if (timeUntilMove <= 0 && collisions == 0) {canMove = true; GetComponent<BoxCollider2D>().isTrigger = false; damaging = false;}
+        if (timeUntilMove <= 0 && timeUntilMove > -1 && collisions == 0) {rigidbody.linearVelocity /= 2; rigidbody.linearVelocity += oldSpeed/4; timeUntilMove = -2;}
+        if (timeUntilMove > 0) {canMove = false; GetComponent<BoxCollider2D>().isTrigger = true; damaging = true;}
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -67,6 +70,11 @@ public class PlayerControl : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         collisions++;
+        print(collision.gameObject);
+        if (collision.CompareTag("Enemy"))
+        {
+            print("HIT " + collision.gameObject.name);
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)

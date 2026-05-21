@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Slot
   - Discarder
+  - Enemy
   layers:
   - Default
   - TransparentFX

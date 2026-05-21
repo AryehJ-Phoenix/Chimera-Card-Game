@@ -103,7 +103,7 @@ public class Player_CardsManager : MonoBehaviour
         Player.oldSpeed = rigidbody.linearVelocity;
         rigidbody.linearVelocity = new(0,0);
         Player.timeUntilMove = 0.25f;
-        rigidbody.linearVelocity = 4*card.range*angle;
+        rigidbody.linearVelocity = 8*card.range*angle;
 
         //GM.Player.transform.Translate(angle*card.range * -1);
     }
