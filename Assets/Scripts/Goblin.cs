@@ -11,7 +11,6 @@ public class Goblin : MonoBehaviour
     [SerializeField] Sprite normSprite;
     [SerializeField] Sprite punchSprite;
     [SerializeField] Sprite throwSprite;
-    float health = 3;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,16 +37,5 @@ public class Goblin : MonoBehaviour
             if (transform.position.x - GM.Player.transform.position.x > 0) {GetComponent<SpriteRenderer>().flipX = true;}
             if (transform.position.x - GM.Player.transform.position.x < 0) {GetComponent<SpriteRenderer>().flipX = false;}
         }
-
-        if (health <= 0)
-        {
-            print(name + " killed");
-            Destroy(gameObject);
-        }
-    }
-
-    public void ChangeHealth(float amount)
-    {
-        health += amount;
     }
 }

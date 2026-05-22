@@ -96,20 +96,20 @@ public class Player_CardsManager : MonoBehaviour
     void Headbut(Card_data card)
     {
         Rigidbody2D rigidbody = Player.GetComponent<Rigidbody2D>();
-        print("PLAYED HEADBUT");
 
-        Vector3 angle = (GM.mousePosIRL - Player.transform.position);
+        Vector2 angle = (GM.mousePosIRL - Player.transform.position);
         angle.Normalize();
         Player.oldSpeed = rigidbody.linearVelocity;
         rigidbody.linearVelocity = new(0,0);
         Player.timeUntilMove = 0.25f;
-        rigidbody.linearVelocity = 8*card.range*angle;
+        rigidbody.linearVelocity = 4*card.range*angle;
+        print(angle);
 
         //GM.Player.transform.Translate(angle*card.range * -1);
     }
 
     void Punch(Card_data card)
     {
-        print("PLAYED PUNCH");
+        
     }
 }

@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerControl : MonoBehaviour
 {
     Vector2 moveInput;
-    Vector2 boundaries = new(34,15);
+    Vector2 boundaries = new(32.5f,15);
     [SerializeField] float target_speed = 5;
     [SerializeField] float acceleration = 25f;
     new Rigidbody2D rigidbody;
@@ -59,6 +59,8 @@ public class PlayerControl : MonoBehaviour
         if (timeUntilMove <= 0 && collisions == 0) {canMove = true; GetComponent<BoxCollider2D>().isTrigger = false; damaging = false;}
         if (timeUntilMove <= 0 && timeUntilMove > -1 && collisions == 0) {rigidbody.linearVelocity /= 2; rigidbody.linearVelocity += oldSpeed/4; timeUntilMove = -2;}
         if (timeUntilMove > 0) {canMove = false; GetComponent<BoxCollider2D>().isTrigger = true; damaging = true;}
+
+        collisions = 0;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -69,17 +71,22 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        collisions++;
-        print(collision.gameObject);
-        if (collision.CompareTag("Enemy"))
+        //collisions++;
+        
+        if (collision.gameObject.GetComponentInParent<EnemyHealth>())
         {
-            print("HIT " + collision.gameObject.name);
+            collision.gameObject.GetComponentInParent<EnemyHealth>().ChangeHealth(-3);
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        collisions--;
+        //collisions--;
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        collisions++;
     }
 
     public void ChangeHealth(float amount)
