@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour
     Vector2 boundaries = new(32.5f,15);
     [SerializeField] float target_speed = 5;
     [SerializeField] float acceleration = 25f;
+    public GameObject damageCapsule;
     new Rigidbody2D rigidbody;
     float last_directionX = 1;
     public bool canMove = true;

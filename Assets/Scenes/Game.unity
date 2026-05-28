@@ -1068,6 +1068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
   target_speed: 25
   acceleration: 75
+  damageCapsule: {fileID: 5223367601248760095, guid: 4986bf5daab0d481c824365abad40d40, type: 3}
   canMove: 1
   timeUntilMove: -1
   oldSpeed: {x: 0, y: 0}
