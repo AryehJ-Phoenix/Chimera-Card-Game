@@ -3,6 +3,7 @@ using System.Xml;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class Player_CardsManager : MonoBehaviour
 {
@@ -103,13 +104,28 @@ public class Player_CardsManager : MonoBehaviour
         rigidbody.linearVelocity = new(0,0);
         Player.timeUntilMove = 0.25f;
         rigidbody.linearVelocity = 4*card.range*angle;
-        print(angle);
 
         //GM.Player.transform.Translate(angle*card.range * -1);
     }
 
     void Punch(Card_data card)
     {
+        Damager damageCapsule = Player.damageCapsule;
+
+        Vector2 dir = (GM.mousePosIRL - Player.transform.position);
+        dir.Normalize();
+        float angle = Vector2.Angle((Vector2)Player.transform.position,(Vector2)GM.mousePosIRL);
+        print("Punch angle: " + angle);
+        print("Punch direction: " + dir);
         
+
+        Damager damager = Instantiate(damageCapsule,transform.position + (Vector3)dir*card.range,Quaternion.identity,Player.transform);
+        // damager.transform.Translate(dir*card.range);
+        damager.transform.eulerAngles = new(0,0,angle);
+        print("Punch pos: " + damager.transform.position);
+        damager.damage = card.damage;
+        damager.lifetime = 0.5f;
+        Player.timeUntilMove = 0.5f;
+        Player.GetComponent<Rigidbody2D>().linearVelocity = new(0,0);
     }
 }
