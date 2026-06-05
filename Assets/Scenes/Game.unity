@@ -1015,7 +1015,7 @@ MonoBehaviour:
   mousePos: {x: 0, y: 0, z: 0}
   mousePosIRL: {x: 0, y: 0, z: 0}
   screen_offset: {x: 0, y: 0}
-  drawTime: 2
+  drawTime: 4
 --- !u!4 &1017834355
 Transform:
   m_ObjectHideFlags: 0
@@ -1319,9 +1319,9 @@ MonoBehaviour:
   deck:
   - {fileID: 11400000, guid: 60378559fe9554432aec588df47e9620, type: 2}
   - {fileID: 11400000, guid: 60378559fe9554432aec588df47e9620, type: 2}
-  - {fileID: 11400000, guid: 60378559fe9554432aec588df47e9620, type: 2}
-  - {fileID: 11400000, guid: 60378559fe9554432aec588df47e9620, type: 2}
-  - {fileID: 11400000, guid: 60378559fe9554432aec588df47e9620, type: 2}
+  - {fileID: 11400000, guid: 52ae3d4a2f4854ed3b7d1b2a32956086, type: 2}
+  - {fileID: 11400000, guid: 52ae3d4a2f4854ed3b7d1b2a32956086, type: 2}
+  - {fileID: 11400000, guid: 702b1adc9f9574779849fb15ad635ac4, type: 2}
   hand: []
   discard: []
   blank: {fileID: 8989335780227048477, guid: fa62856d90ccf8a49b59d2f374bc7cd5, type: 3}

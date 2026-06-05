@@ -24,7 +24,8 @@ public class Player_CardsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // float angle = Vector2.Angle((Vector2)Player.transform.localPosition,(Vector2)GM.mousePosIRL - (Vector2)Player.transform.position);
+        // print(angle);
     }
 
     public void Input(InputAction.CallbackContext context)
@@ -92,6 +93,7 @@ public class Player_CardsManager : MonoBehaviour
         //print("Detected card name " + card.card_name);
         if (card.card_name == "Headbut") {Headbut(card);}
         if (card.card_name == "Punch") {Punch(card);}
+        if (card.card_name == "Arrow") {Arrow(card);}
     }
 
     void Headbut(Card_data card)
@@ -115,17 +117,36 @@ public class Player_CardsManager : MonoBehaviour
         Vector2 dir = (GM.mousePosIRL - Player.transform.position);
         dir.Normalize();
         float angle = Vector2.Angle((Vector2)Player.transform.position,(Vector2)GM.mousePosIRL);
-        print("Punch angle: " + angle);
+        float nangle = Mathf.Atan2(GM.mousePosIRL.y-Player.transform.position.y,GM.mousePosIRL.x-Player.transform.position.x) * Mathf.Rad2Deg;
+        print("Punch angle: " + nangle);
         print("Punch direction: " + dir);
         
 
         Damager damager = Instantiate(damageCapsule,transform.position + (Vector3)dir*card.range,Quaternion.identity,Player.transform);
         // damager.transform.Translate(dir*card.range);
-        damager.transform.eulerAngles = new(0,0,angle);
+        damager.transform.Rotate(0,0,nangle);
         print("Punch pos: " + damager.transform.position);
         damager.damage = card.damage;
         damager.lifetime = 0.5f;
+        Player.GetComponent<Rigidbody2D>().linearVelocity = new(0,0);
         Player.timeUntilMove = 0.5f;
         Player.GetComponent<Rigidbody2D>().linearVelocity = new(0,0);
+    }
+
+    void Arrow(Card_data card)
+    {
+        Damager damageCapsule = Player.damageCapsule;
+
+        Vector2 dir = (GM.mousePosIRL - Player.transform.position);
+        dir.Normalize();
+        float nangle = Mathf.Atan2(GM.mousePosIRL.y-Player.transform.position.y,GM.mousePosIRL.x-Player.transform.position.x) * Mathf.Rad2Deg;
+        Damager damager = Instantiate(damageCapsule,transform.position + (Vector3)dir,Quaternion.identity,Player.transform);
+        damager.AddComponent<Moving>();
+        damager.GetComponent<Moving>().speed = card.range*5;
+        damager.GetComponent<Moving>().dir = dir;
+        damager.transform.Rotate(0,0,nangle+90);
+        damager.damage = card.damage;
+        
+        damager.lifetime = 1f;
     }
 }

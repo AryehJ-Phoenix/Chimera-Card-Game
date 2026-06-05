@@ -99,9 +99,10 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
     {
         // print("Discarding " + name);
         slot.open = true;
-        if (!discarding) {CM.FindCardEffect(data); CM.discard.Add(data);}
+        print(GM.deck.Count+GM.discard_pile.Count+GM.player_hand.Count);
+        if (!discarding || GM.deck.Count+GM.discard_pile.Count+GM.player_hand.Count == 1) {CM.FindCardEffect(data); CM.discard.Add(data);}
         // print("fulfill");
-        if (discarding) {GM.Player.ChangeHealth(damage);}
+        if (discarding && GM.deck.Count+GM.discard_pile.Count+GM.player_hand.Count > 1) {GM.Player.ChangeHealth(damage);}
         CM.hand.Remove(data);
         Destroy(gameObject);
     }
