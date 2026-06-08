@@ -48,7 +48,11 @@ public class EnemySummoner : MonoBehaviour
         float yShift = GM.RNG(10,20) * yPosNeg;    //(int)Math.Round((int)Math.Round(GM.RNG(0,1)) - 0.5f);
         //print("xShift = " + xShift);
         //print("yShift = " + yShift);
+
+        Vector2 angle = new(GM.RNG(-1,1),GM.RNG(-1,1));
+        float distance = GM.RNG(20,30);
+        Vector2 offset = angle*distance;
         
-        GameObject newEnemy = Instantiate(Enemies[enemy],GM.Player.transform.position + new Vector3(xShift,yShift,0),Quaternion.identity,GM.Summoner.transform);
+        GameObject newEnemy = Instantiate(Enemies[enemy],GM.Player.transform.position + (Vector3)offset,Quaternion.identity,GM.Summoner.transform);
     }
 }

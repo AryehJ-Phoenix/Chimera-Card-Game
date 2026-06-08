@@ -15,7 +15,8 @@ public class Card_data : ScriptableObject
     {
         Curve,
         Line,
-        Round
+        Round,
+        None
     }
     public aoeType aoe;
     public int damage;

@@ -11,9 +11,9 @@ public class Slots : MonoBehaviour
     float visibility = 1;
     float visibilityChange = 0.02f;
     Vector3 card_goal;
-    Vector3 goal1 = new(-75,-150,-1);
-    Vector3 goal2 = new(0,-150,-1);
-    Vector3 goal3 = new(75,-150,-1);
+    Vector3 goal1 = new(-95,-190,-1);
+    Vector3 goal2 = new(0,-190,-1);
+    Vector3 goal3 = new(95,-190,-1);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

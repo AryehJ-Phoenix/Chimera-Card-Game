@@ -1011,7 +1011,7 @@ MonoBehaviour:
   laptop_offset: {x: 597.75, y: 236.6296}
   mac_scale: {x: 0.2, y: 0.2, z: 0.2}
   laptop_scale: {x: 0.25, y: 0.25, z: 0.25}
-  mac: 1
+  mac: 0
   mousePos: {x: 0, y: 0, z: 0}
   mousePosIRL: {x: 0, y: 0, z: 0}
   screen_offset: {x: 0, y: 0}
@@ -1320,7 +1320,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 60378559fe9554432aec588df47e9620, type: 2}
   - {fileID: 11400000, guid: 60378559fe9554432aec588df47e9620, type: 2}
   - {fileID: 11400000, guid: 52ae3d4a2f4854ed3b7d1b2a32956086, type: 2}
-  - {fileID: 11400000, guid: 52ae3d4a2f4854ed3b7d1b2a32956086, type: 2}
+  - {fileID: 11400000, guid: 32a36e236db37824aa5e7b067c9c1481, type: 2}
   - {fileID: 11400000, guid: 702b1adc9f9574779849fb15ad635ac4, type: 2}
   hand: []
   discard: []
@@ -1394,7 +1394,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 410485725}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1404,7 +1404,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_UseReflectionProbes: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_UpdateRectTransformForStandalone: 0
+  m_UpdateRectTransformForStandalone: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

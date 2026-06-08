@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Unity.VisualScripting.Dependencies.Sqlite;
+using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -58,27 +59,31 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player == null) {Player = FindAnyObjectByType<PlayerControl>();}
-        if (Summoner == null) {Summoner = FindAnyObjectByType<EnemySummoner>();}
-        if (canvas == null) {canvas = FindAnyObjectByType<Canvas>();}
-        if (CM == null) {CM = FindAnyObjectByType<Player_CardsManager>();}
+        if (SceneManager.GetActiveScene().name == "Game")
+        {
+            if (Player == null) {Player = FindAnyObjectByType<PlayerControl>();}
+            if (Summoner == null) {Summoner = FindAnyObjectByType<EnemySummoner>();}
+            if (canvas == null) {canvas = FindAnyObjectByType<Canvas>();}
+            if (CM == null) {CM = FindAnyObjectByType<Player_CardsManager>();}
 
-        if (Summoner.s1 != null) {slot_1 = Summoner.s1;}
-        if (Summoner.s2 != null) {slot_2 = Summoner.s2;}
-        if (Summoner.s3 != null) {slot_3 = Summoner.s3;}
+            if (Summoner.s1 != null) {slot_1 = Summoner.s1;}
+            if (Summoner.s2 != null) {slot_2 = Summoner.s2;}
+            if (Summoner.s3 != null) {slot_3 = Summoner.s3;}
 
-        // if (mac) {mousePos = Mouse.current.position.ReadValue() - mac_offset;}
-        // else {mousePos = Mouse.current.position.ReadValue() - laptop_offset;}
-        screen_offset = canvas.renderingDisplaySize;
-        mousePos = Mouse.current.position.ReadValue() - screen_offset/2;
-        mousePosIRL = Camera.main.ScreenToWorldPoint(new(Mouse.current.position.ReadValue().x,Mouse.current.position.ReadValue().y,0));
+            // if (mac) {mousePos = Mouse.current.position.ReadValue() - mac_offset;}
+            // else {mousePos = Mouse.current.position.ReadValue() - laptop_offset;}
+            screen_offset = canvas.renderingDisplaySize;
+            mousePos = Mouse.current.position.ReadValue() - screen_offset/2;
+            mousePosIRL = Camera.main.ScreenToWorldPoint(new(Mouse.current.position.ReadValue().x,Mouse.current.position.ReadValue().y,0));
 
-        if (Summoner != null && cd_circle == null) {cd_circle = Summoner.cd_circle;}
-        if (cd_circle != null) {cd_circle.fillAmount = drawTimer;}
+            if (Summoner != null && cd_circle == null) {cd_circle = Summoner.cd_circle;}
+            if (cd_circle != null) {cd_circle.fillAmount = drawTimer;}
 
-        drawTimer -= Time.deltaTime/drawTime;
+            drawTimer -= Time.deltaTime/drawTime;
 
-        if (drawTimer <= 0) {if (CM != null) {CM.Draw();} drawTimer = 1f;}
+            if (drawTimer <= 0) {if (CM != null) {CM.Draw();} drawTimer = 1f;}
+        }
+        
     }
 
     void Deal()

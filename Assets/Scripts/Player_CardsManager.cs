@@ -1,9 +1,7 @@
 using System.Collections.Generic;
-using System.Xml;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class Player_CardsManager : MonoBehaviour
 {
@@ -24,8 +22,7 @@ public class Player_CardsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // float angle = Vector2.Angle((Vector2)Player.transform.localPosition,(Vector2)GM.mousePosIRL - (Vector2)Player.transform.position);
-        // print(angle);
+        
     }
 
     public void Input(InputAction.CallbackContext context)
@@ -94,6 +91,7 @@ public class Player_CardsManager : MonoBehaviour
         if (card.card_name == "Headbut") {Headbut(card);}
         if (card.card_name == "Punch") {Punch(card);}
         if (card.card_name == "Arrow") {Arrow(card);}
+        if (card.card_name == "Speed Draw") {StartCoroutine(SpeedDraw(card.range));}
     }
 
     void Headbut(Card_data card)
@@ -118,14 +116,11 @@ public class Player_CardsManager : MonoBehaviour
         dir.Normalize();
         float angle = Vector2.Angle((Vector2)Player.transform.position,(Vector2)GM.mousePosIRL);
         float nangle = Mathf.Atan2(GM.mousePosIRL.y-Player.transform.position.y,GM.mousePosIRL.x-Player.transform.position.x) * Mathf.Rad2Deg;
-        print("Punch angle: " + nangle);
-        print("Punch direction: " + dir);
         
 
         Damager damager = Instantiate(damageCapsule,transform.position + (Vector3)dir*card.range,Quaternion.identity,Player.transform);
         // damager.transform.Translate(dir*card.range);
         damager.transform.Rotate(0,0,nangle);
-        print("Punch pos: " + damager.transform.position);
         damager.damage = card.damage;
         damager.lifetime = 0.5f;
         Player.GetComponent<Rigidbody2D>().linearVelocity = new(0,0);
@@ -148,5 +143,12 @@ public class Player_CardsManager : MonoBehaviour
         damager.damage = card.damage;
         
         damager.lifetime = 1f;
+    }
+
+    System.Collections.IEnumerator SpeedDraw(float waitTime)
+    {
+        GM.drawTime /= 2;
+        yield return new WaitForSeconds(waitTime);
+        GM.drawTime *= 2;
     }
 }

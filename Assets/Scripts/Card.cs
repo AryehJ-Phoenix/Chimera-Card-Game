@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using System.Net.NetworkInformation;
 using UnityEngine.EventSystems;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandler
 {
@@ -62,6 +63,22 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
         CM = FindAnyObjectByType<Player_CardsManager>();
 
         rectTransform = GetComponent<RectTransform>();
+
+        switch (data.type)
+        {
+            case Card_data.Card_type.Damage:
+                GetComponentInChildren<Image>().color = new(0.5686275f,0.372549f,0.372549f,1);
+                break;
+            case Card_data.Card_type.Buff:
+                GetComponentInChildren<Image>().color = new(0.4509804f,0.372549f,0.4509804f,1);
+                break;
+            case Card_data.Card_type.Debuff:
+                GetComponentInChildren<Image>().color = new(0.4509804f,0.4509804f,0.372549f,1);
+                break;
+            default:
+                GetComponentInChildren<Image>().color = new(0.4509804f,0.372549f,0.372549f,1);
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -99,7 +116,7 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
     {
         // print("Discarding " + name);
         slot.open = true;
-        print(GM.deck.Count+GM.discard_pile.Count+GM.player_hand.Count);
+        print("Card count: " + (GM.deck.Count+GM.discard_pile.Count+GM.player_hand.Count));
         if (!discarding || GM.deck.Count+GM.discard_pile.Count+GM.player_hand.Count == 1) {CM.FindCardEffect(data); CM.discard.Add(data);}
         // print("fulfill");
         if (discarding && GM.deck.Count+GM.discard_pile.Count+GM.player_hand.Count > 1) {GM.Player.ChangeHealth(damage);}
@@ -109,7 +126,6 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        print("idk man");
         if (other.CompareTag("Discarder"))
         {
             print(name + " Entered Discard");
@@ -119,7 +135,6 @@ public class Card : MonoBehaviour, IBeginDragHandler, IDragHandler,IEndDragHandl
 
     void OnTriggerExit2D(Collider2D other)
     {
-        print("idk man but exiting");
         if (other.CompareTag("Discarder"))
         {
             print(name + " Exited Discard");
